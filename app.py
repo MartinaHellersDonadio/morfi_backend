@@ -14,12 +14,12 @@ def index():
             "<p>Go to these URI's to use the mock server:</p>" \
             "<em>http://127.0.0.1:5000/api/v1/requestjoin</em>" \
             "<p><em>http://127.0.0.1:5000/api/v1/subscriberequest</em></p>" \
-            "<em></em>" \
-           "<p>These HTTP methods are allowed: " \
+            "<p><em>http://localhost:5000/api/v1/reservations</em></p>" \
+           "<h3>These HTTP methods are allowed: " \
             "<blockquote><code>GET</code></blockquote>" \
             "<blockquote><code>POST</code></blockquote>" \
             "<blockquote><code>PUT</code></blockquote>" \
-            "<blockquote><code>DELETE</code></blockquote></p>"
+            "<blockquote><code>DELETE</code></blockquote></h3>"
 
 
 memory_application = []
