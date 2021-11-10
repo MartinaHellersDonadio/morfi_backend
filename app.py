@@ -119,6 +119,7 @@ def reservation():
         reservation_id_gen = generate_reservation_id()
         new_reservation = Reservations(
             reservation_id_gen,
+            body["user_name"],
             body["day"],
             body["time"],
             body["restaurant"],
@@ -131,6 +132,7 @@ def reservation():
         return flask.jsonify(
             {
                 "reservation_id": reservation_id_gen,
+                "user_name": body["user_name"],
                 "day selected": body["day"],
                 "time selected": body["time"],
                 "restaurant selected": body["restaurant"],

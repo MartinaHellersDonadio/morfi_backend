@@ -24,8 +24,9 @@ class SubscribeRequests:
 
 
 class Reservations:
-    def __init__(self, reservation_id, day, time, restaurant, full_name, phone_number, quantity):
+    def __init__(self, reservation_id, user_name, day, time, restaurant, full_name, phone_number, quantity):
         self.reservation_id = reservation_id
+        self.user_name = user_name
         self.day = day
         self.time = time
         self.restaurant = restaurant
