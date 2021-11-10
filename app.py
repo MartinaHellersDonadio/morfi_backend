@@ -2,7 +2,7 @@ import flask
 from flask import Flask
 from flask_cors import CORS
 
-from models import Requests, SubscribeRequests, Reservations
+from models import Requests, SubscribeRequests, Reservations, Review
 
 app = Flask(__name__)
 CORS(app)
@@ -14,7 +14,8 @@ def index():
             "<p>Go to these URI's to use the mock server:</p>" \
             "<em>http://127.0.0.1:5000/api/v1/requestjoin</em>" \
             "<p><em>http://127.0.0.1:5000/api/v1/subscriberequest</em></p>" \
-            "<p><em>http://localhost:5000/api/v1/reservations</em></p>" \
+            "<p><em>http://127.0.0.1:5000/api/v1/reservations</em></p>" \
+           "<p><em>http://127.0.0.1:5000/api/v1/reviews</em></p>" \
            "<h3>These HTTP methods are allowed: " \
             "<blockquote><code>GET</code></blockquote>" \
             "<blockquote><code>POST</code></blockquote>" \
@@ -147,6 +148,42 @@ def generate_reservation_id():
     reservation_id.__add__(1)
     return str((len(memory_reservation) + 1)).rjust(8, "0")
 
+
+memory_reviews = []
+review_id = 0
+@app.route('/api/v1/reviews', methods=["POST"])
+
+def review_manage ():
+    is_create = flask.request.method == 'POST'
+
+    if is_create:
+        body = flask.request.json
+        review_id_gen = generate_review_id()
+        new_review = Review(
+            review_id_gen,
+            body["user_name"],
+            body["date"],
+            body["comment"],
+            body["stars"],
+            body["shop_id"]
+
+        )
+        memory_reviews.append(new_review.to_json())
+        return flask.jsonify(
+            {
+                "review_id": review_id_gen,
+                "user_name": body["user_name"],
+                "date": body["date"],
+                "comment": body["comment"],
+                "stars": body["stars"],
+                "shop_id": body["shop_id"]
+            }
+        )
+
+
+def generate_review_id():
+    review_id.__add__(1)
+    return str((len(memory_reviews) + 1)).rjust(8, "0")
 
 
 if __name__ == '__main__':
