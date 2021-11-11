@@ -47,6 +47,5 @@ class Review:
         self.stars = stars
         self.shop_id = shop_id
 
-
     def to_json(self):
         return self.__dict__
