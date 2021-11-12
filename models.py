@@ -39,12 +39,12 @@ class Reservations:
 
 
 class Review:
-    def __init__(self, review_id, user_name, date, comment, stars, shop_id):
+    def __init__(self, review_id, user_name, date, comment, scale, shop_id):
         self.review_id = review_id
         self.user_name = user_name
         self.date = date
         self.comment = comment
-        self.stars = stars
+        self.scale = scale
         self.shop_id = shop_id
 
     def to_json(self):

@@ -189,7 +189,7 @@ def review_manage ():
             body["user_name"],
             body["date"],
             body["comment"],
-            body["stars"],
+            body["scale"],
             body["shop_id"],
 
         )
@@ -200,7 +200,7 @@ def review_manage ():
                 "user_name": body["user_name"],
                 "date": body["date"],
                 "comment": body["comment"],
-                "stars": body["stars"],
+                "scale": body["scale"],
             }
         )
 
