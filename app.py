@@ -15,7 +15,7 @@ def index():
             "<em>http://127.0.0.1:5000/api/v1/requestjoin</em>" \
             "<p><em>http://127.0.0.1:5000/api/v1/subscriberequest</em></p>" \
             "<p><em>http://127.0.0.1:5000/api/v1/reservations</em></p>" \
-           "<p><em>http://127.0.0.1:5000/api/v1/reviews</em></p>" \
+           "<p><em>http://127.0.0.1:5000/api/v1/reviews/<shop_id></em></p>" \
            "<h3>These HTTP methods are allowed: " \
             "<blockquote><code>GET</code></blockquote>" \
             "<blockquote><code>POST</code></blockquote>"
@@ -149,24 +149,9 @@ def generate_reservation_id():
     reservation_id.__add__(1)
     return str((len(memory_reservation) + 1)).rjust(8, "0")
 
-@app.route('/api/v1/reservations/<reservation_id>', methods=["GET", "PUT"])
+@app.route('/api/v1/reservations/<reservation_id>', methods=["GET"])
 def edit_reservation_id(reservation_id):
-    is_edit = flask.request.method == "PUT"
     is_fetch = flask.request.method == "GET"
-
-    if is_edit:
-        body = flask.request.json
-        for i in range(len(memory_reservation)):
-            if memory_reservation[i]["reservation_id"] == reserv_id:
-                update_reserv = memory_reservation[i]
-                update_reserv["full_name"] = body["full_name"]
-                update_reserv["day_selected"] = body["day_selected"]
-                update_reserv["time_selected"] = body["time_selected"]
-                update_reserv["restaurant_selected"] = body["restaurant_selected"]
-                update_reserv["phone_number"] = body["phone_number"]
-                update_reserv["quantity"] = body["quantity"]
-                memory_reservation[i] = update_reserv
-                return memory_reservation[i]
 
     if is_fetch:
         for reserv in memory_reservation:
