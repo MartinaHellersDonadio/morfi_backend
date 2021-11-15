@@ -55,7 +55,8 @@ def applications():
                 "open_time": body["open_time"],
                 "close_time": body["close_time"],
                 "description": body["description"],
-                "application_id": application_id_gen
+                "application_id": application_id_gen,
+
             }
         )
 
